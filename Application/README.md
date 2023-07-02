@@ -13,3 +13,4 @@ This is the start of the main application.
 - classlib/
     - IO.java : Reads and Write information on the hard disk.
     - SparkDB.java : In-memory database. For more information visit the original [Repository](https://github.com/NaDeSys/SparkDB).
+    - Graph.java : Represents a single graph with all of the edge and node information
