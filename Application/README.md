@@ -1,18 +1,13 @@
-## Getting Started
+# Main Application
+This is the start of the main application.
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+## Folder Information
+- src/ : Contains source code.
+- lib/ : Contains the JAR files for GraphStream.
+- data/ : Contains example Protein-Protein interaction networks from StringDB, the file name is the GeneOntology ID.
 
-## Folder Structure
-
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+## Class Information
+- App.java : Contains an example of running Harmonia and evaluating it based on Cyclops.
+- classlib/
+    - IO.java : Reads and Write information on the hard disk.
+    - SparkDB.java : In-memory database. For more information visit the original [Repository](https://github.com/NaDeSys/SparkDB).
