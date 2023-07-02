@@ -20,5 +20,10 @@ We used Java programming language to build the kit, with [SparkDB](https://githu
 
 Check the README of each application for more information about these applications. All of the source code exists in 'Application/'
 
+## Build and run
+All of the commands must be executed in 'Application/src/'
+- Build classfile: `$ javac App.java`
+- Run classfile: `$ java app`
+
 ## Author Information
 Morad A., E-mail: Zelakolase[at]tuta.io, website: [zelakolase.neocities.org](zelakolase.neocities.org)
