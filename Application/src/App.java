@@ -3,6 +3,7 @@ import java.util.HashMap;
 
 import Cyclops.Algorithm;
 import Cyclops.DeltaStrength;
+import Harmonia.ClusteringCoefficient;
 import classlib.Graph;
 
 public class App {
@@ -23,7 +24,13 @@ public class App {
         HashMap<String, Double> DeltaStrengths = DeltaStrength.compute(G, "node1", "node2", "combined_score");
         // Run the algorithm
         ArrayList<ArrayList<String>> Clusters = Algorithm.computeAL(G, DeltaStrengths, 0.15, 0.35, "node1", "node2");
-                
+        
         /* Evaluate it */
+
+        // Get all clustering coefficients
+        for(ArrayList<String> Cluster : Clusters) {
+            double clusteringCoefficient = ClusteringCoefficient.compute(G, Cluster, "node1", "node2", "combined_score");
+            System.out.println(Cluster + " , " + clusteringCoefficient);
+        }
     }
 }
