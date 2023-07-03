@@ -20,3 +20,4 @@ This is the start of the main application.
 - Harmonia/
     - ClusteringCoefficient.java : Computes the clustering coefficient for a certain graph
     - PowerSet.java : Generates a power set of all possible clusters for a graph, then compares it to the given clusterization results
+- stopWatch.java : A stop watch which measure elapsed time in nanoseconds.
