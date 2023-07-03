@@ -14,6 +14,16 @@ import classlib.Graph;
  * @author Morad A.
  */
 public class Algorithm {
+    /**
+     * Algorithm computation as documented, assuming directed graph from nodeColumn1 -> nodeColumn2
+     * @param G The graph object
+     * @param DeltaStrengths The HashMap of DeltaStrengths where the key is the node name and the value is the delta strength
+     * @param unclusteredCutoff The unclustered nodes cutoff percentage
+     * @param headCutoff The head nodes cutoff percentage
+     * @param nodeColumn1 The first column that contains one of the ends of an edge
+     * @param nodeColumn2 The second column that contains the other end of an edge
+     * @return HashMap, key is the head node, and value is the cluster where every element in arraylist is a cluster member
+     */
     public HashMap<String, ArrayList<String>> computeHM(Graph G, HashMap<String, Double> DeltaStrengths, double unclusteredCutoff, double headCutoff, String nodeColumn1, String nodeColumn2) {
         HashMap<String, ArrayList<String>> output = new HashMap<>();
         ArrayList<String> remainingNodes = G.nodeNames;
@@ -49,6 +59,9 @@ public class Algorithm {
         return output;
     }
 
+    /**
+     * @see computeHM(..)
+     */
     public ArrayList<ArrayList<String>> computeAL(Graph G, HashMap<String, Double> DeltaStrengths, double unclusteredCutoff, double headCutoff, String nodeColumn1, String nodeColumn2) {
         HashMap<String, ArrayList<String>> computation = computeHM(G, DeltaStrengths, unclusteredCutoff, headCutoff, nodeColumn1, nodeColumn2);
         ArrayList<ArrayList<String>> output = new ArrayList<>();
@@ -60,6 +73,13 @@ public class Algorithm {
         return output;
     }
 
+    /**
+     * returns nodes with certain defined criteria
+     * @param DeltaStrengths The HashMap of DeltaStrengths where the key is the node name and the value is the delta strength
+     * @param N Number of nodes to return
+     * @param close True if we are looking for the closest nodes' deltaStrengths to zero, false if we are looking for the larget nodes' deltaStrengths
+     * @return A list of node names that satisfy the criteria
+     */
     public static List<String> findNodesWithCriteria(HashMap<String, Double> DeltaStrengths, int N, boolean close) {
         List<String> nodes = new ArrayList<>(DeltaStrengths.keySet());
         Collections.sort(nodes, new Comparator<String>() {
