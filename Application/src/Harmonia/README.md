@@ -12,3 +12,5 @@ Given these two values, we can calculate `c = sum(c_v) / (v_n * e_n)`.
 2. sum(c_v) : Sum of all clustering coefficients for all verticies (elements/nodes)
 3. v_n : Number of nodes/verticies/elements
 4. e_n : Number of internal edges in cluster
+
+This equation is thouroughly tested, you can use it safely under BY-NC-SA.
