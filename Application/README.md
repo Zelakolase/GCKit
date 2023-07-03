@@ -8,7 +8,7 @@ This is the start of the main application.
 - Cyclops/ : Cyclops application source code
 - Harmonia/ : Harmonia application source code
 
-## Class Information
+## Class Information inside src/
 - App.java : Contains an example of running Harmonia and evaluating it based on Cyclops.
 - classlib/
     - IO.java : Reads and Write information on the hard disk.

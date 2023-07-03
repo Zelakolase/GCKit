@@ -23,6 +23,10 @@ public class Graph {
 
         /* Adds all unique node names into ArrayList<String> nodeName */
         for(String nodeName : allNodeNames) {
+            /*
+             * To know why I made this implementation, instead of the conventional if conditional,
+             * please search about 'Never Nesting in Software'
+             */
             if(nodeName.contains(nodeName)) continue;
             nodeNames.add(nodeName);
         }
