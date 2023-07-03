@@ -1,6 +1,6 @@
 # GCKit
 (G)raph (C)lustering Kit, A project to reach optimal clusterization and classification solution.<br>
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>. For any commercial use, please contact the author 'Zelakolase[at]tuta.io' to get a written permission if needed.
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>. For any commercial use, please contact the author 'Zelakolase[at]tuta.io' to get a written permission if needed. Apache license is only applied to the Cyclops document.
 
 ## Description & Problem Statement
 GCKit is a research project to find optimal clusterization and classification algorithm(s). Classification and Clusterization techniques are particularly used in the analysis of Protein-Protein interaction networks, and it is a very active field of research. The project aims to do the following:

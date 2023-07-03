@@ -1,1 +1,12 @@
 # Cyclops Application
+This application has two functionalities:
+1. Computation of DeltaStrength coefficient, a property for nodes and an important input in the proposed algorithm
+2. Computation of the algorithm
+
+It is noteworthy that the algorithm expects a weighted **directed** graph.
+
+## Philosophy
+It is assumed that nodes with a lot of ingoing and outgoing connections with near weights are not suitable to be clustered due to their membership in multiple potential clusters at the same time. The algorithm excludes these nodes and make hierarchial clusters with head and members, where heads give most value.
+
+## Document
+The supplied document has the theoretical algorithm, as a part of PPI network clusterization project. The theoretical idea is licensed under Apache license. The original BY-NC-SA license is applied to all of the source code.
