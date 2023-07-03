@@ -14,6 +14,8 @@ public class Graph {
 
     /**
      * Get all node names from edgeTable
+     * @param nodeColumn1 The first column that contains one of the ends of an edge
+     * @param nodeColumn2 The second column that contains the other end of an edge
      */
     public void computeNodes(String nodeColumn1, String nodeColumn2) {
         /* Combines all node names that exist in edge table to a single arraylist */
