@@ -1,5 +1,9 @@
 package classlib;
 
+/**
+ * A stop watch which measure elapsed time in nanoseconds
+ * @author Morad A.
+ */
 public class stopWatch {
     public long nanoTimeElapsed = 0l;
 

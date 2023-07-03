@@ -10,7 +10,7 @@ GCKit is a research project to find optimal clusterization and classification al
 NOTE: This kit is assumes that every input graph is a weighted graph.
 
 ## General Technical Information
-We used Java programming language to build the kit, with [SparkDB](https://github.com/NaDeSys/SparkDB) and [GraphStream](https://graphstream-project.org). We only support ELF binary releases, not EXE, for a lot of reasons (both technical and political). All of the source code files will be included inside 'Application/'. We are commited to give both binary versions and how to build from source. The source code is compliant with ISO-25010 standard, to ensure high maintainability and readability.
+We used Java programming language to build the kit, with [SparkDB](https://github.com/NaDeSys/SparkDB) and [GraphStream](https://graphstream-project.org). All of the source code files will be included inside 'Application/' The source code tries to follow ISO-25010 standard for code quality, to ensure high readability and maintainability.
 
 ## Applications in Kit
 | Name      | Function |
@@ -24,6 +24,9 @@ Check the README of each application for more information about these applicatio
 All of the commands must be executed in 'Application/src/'
 - Build classfile: `$ javac App.java`
 - Run classfile: `$ java app`
+
+## What is the next step?
+Go to `Application/README.md` for more information about the code
 
 ## Author Information
 Morad A., E-mail: Zelakolase[at]tuta.io, website: [zelakolase.neocities.org](zelakolase.neocities.org)

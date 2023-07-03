@@ -21,6 +21,7 @@ public class ClusteringCoefficient {
      */
     public static double compute(Graph G, ArrayList<String> clusterNodeNames, String nodeColumn1, String nodeColumn2, String weightColumn) {
         double output = 0d;
+        double maxScore = 0d; // The maximum coefficient possible for the cluster, assuming the max weight is 1.0
         int internalEdgeCount = 0; // Count how many internal edges in the cluster. Internal edge is any edge where both of ends is in clusterNodeNames
         /* Iterate over clusterNodeNames */
         for(String clusterNodeName : clusterNodeNames) {
@@ -50,11 +51,17 @@ public class ClusteringCoefficient {
 
             /* Multiply degrees by sumEdges, and add to output */
             output += degrees * sumEdges;
+            /* Max Score calculation, the lonely '1' in the second term is the maximum weight possible */
+            maxScore += (clusterNodeNames.size()-1) * (1 * clusterNodeNames.size()-1);
         }
         /* Divide by the number of cluster nodes to compute the arithmetic mean */
         /* The previous value was the sum of all cluster coefficients all cluster nodes */
         output /= (clusterNodeNames.size() * internalEdgeCount);
-
+        /* We assume that maximum edges for the graph. */
+        /* If the number of nodes in a graph is 'n', then the maximum number of edges is (n*(n-1))/2 */
+        maxScore /= (clusterNodeNames.size() * ((clusterNodeNames.size() * (clusterNodeNames.size() - 1)) / 2));
+        /* The final coefficient is percentage of closeness to the optimal solution */
+        output /= maxScore;
         return output;
     }
 }

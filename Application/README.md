@@ -14,10 +14,10 @@ This is the start of the main application.
     - IO.java : Reads and Write information on the hard disk.
     - SparkDB.java : In-memory database. For more information visit the original [Repository](https://github.com/NaDeSys/SparkDB).
     - Graph.java : Represents a single graph with all of the edge and node information
+    - stopWatch.java : A stop watch which measure elapsed time in nanoseconds, for future use.
 - Cyclops/
     - DeltaStrength.java : Computes DeltaStrength for each node
     - Algorithm.java : The main algorithm
 - Harmonia/
     - ClusteringCoefficient.java : Computes the clustering coefficient for a certain graph
     - PowerSet.java : Generates a power set of all possible clusters for a graph, then compares it to the given clusterization results
-- stopWatch.java : A stop watch which measure elapsed time in nanoseconds.

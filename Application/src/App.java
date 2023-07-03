@@ -11,10 +11,12 @@ public class App {
         /* Declare a Graph and a Stopwatch */
         Graph G = new Graph();
         /*
-        As mentioned in the original README.md, you have to execute the application while you are in
-        'Application/src', because in the next line, we move to the parent directory and access 'data'
-        folder, then the file.
-        */
+         * As mentioned in the original README.md, you have to execute the application
+         * while you are in
+         * 'Application/src', because in the next line, we move to the parent directory
+         * and access 'data'
+         * folder, then the file.
+         */
         G.importTSV("../data/GO:0008217.tsv");
         G.computeNodes("node1", "node2");
 
@@ -24,15 +26,16 @@ public class App {
         HashMap<String, Double> DeltaStrengths = DeltaStrength.compute(G, "node1", "node2", "combined_score");
         // Run the algorithm
         ArrayList<ArrayList<String>> Clusters = Algorithm.computeAL(G, DeltaStrengths, 0.15, 0.35, "node1", "node2");
-        
+
         /* Evaluate it */
 
         // Get all clustering coefficients
-        for(ArrayList<String> Cluster : Clusters) {
+        for (ArrayList<String> Cluster : Clusters) {
             double clusteringCoefficient = ClusteringCoefficient.compute(G, Cluster, "node1", "node2", "combined_score");
             System.out.println(Cluster + " , " + clusteringCoefficient);
         }
         // Get the power set of the whole graph
-        
+        // ArrayList<ArrayList<String>> PS = PowerSet.compute(G, 7, 13);
+        /* Under Development (Shovel emoji xD) */
     }
 }
