@@ -24,9 +24,10 @@ public class Algorithm {
      * @param nodeColumn2 The second column that contains the other end of an edge
      * @return HashMap, key is the head node, and value is the cluster where every element in arraylist is a cluster member
      */
-    public HashMap<String, ArrayList<String>> computeHM(Graph G, HashMap<String, Double> DeltaStrengths, double unclusteredCutoff, double headCutoff, String nodeColumn1, String nodeColumn2) {
+    public static HashMap<String, ArrayList<String>> computeHM(Graph G, HashMap<String, Double> DeltaStrengths, double unclusteredCutoff, double headCutoff, String nodeColumn1, String nodeColumn2) {
         HashMap<String, ArrayList<String>> output = new HashMap<>();
-        ArrayList<String> remainingNodes = G.nodeNames;
+        ArrayList<String> remainingNodes = new ArrayList<>();
+        remainingNodes.addAll(G.nodeNames);
 
         /* Compute how many nodes we will cutoff */
         int unclusteredCutoffNumber = (int) Math.ceil(unclusteredCutoff * G.nodeNames.size());
@@ -62,7 +63,7 @@ public class Algorithm {
     /**
      * @see computeHM(..)
      */
-    public ArrayList<ArrayList<String>> computeAL(Graph G, HashMap<String, Double> DeltaStrengths, double unclusteredCutoff, double headCutoff, String nodeColumn1, String nodeColumn2) {
+    public static ArrayList<ArrayList<String>> computeAL(Graph G, HashMap<String, Double> DeltaStrengths, double unclusteredCutoff, double headCutoff, String nodeColumn1, String nodeColumn2) {
         HashMap<String, ArrayList<String>> computation = computeHM(G, DeltaStrengths, unclusteredCutoff, headCutoff, nodeColumn1, nodeColumn2);
         ArrayList<ArrayList<String>> output = new ArrayList<>();
         for(Entry<String, ArrayList<String>> E : computation.entrySet()) {
@@ -80,7 +81,7 @@ public class Algorithm {
      * @param close True if we are looking for the closest nodes' deltaStrengths to zero, false if we are looking for the larget nodes' deltaStrengths
      * @return A list of node names that satisfy the criteria
      */
-    public static List<String> findNodesWithCriteria(HashMap<String, Double> DeltaStrengths, int N, boolean close) {
+    private static List<String> findNodesWithCriteria(HashMap<String, Double> DeltaStrengths, int N, boolean close) {
         List<String> nodes = new ArrayList<>(DeltaStrengths.keySet());
         Collections.sort(nodes, new Comparator<String>() {
             @Override
