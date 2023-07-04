@@ -25,6 +25,11 @@ All of the commands must be executed in 'Application/src/'
 - Build classfile: `$ javac App.java`
 - Run classfile: `$ java app`
 
+## Datasets available in Application/data
+- GO:0008217 : Regulation of Blood Pressure
+- GO:0045776 (new) : Negative regulation of Blood Pressure
+- GO:0048666 : Neuron Development
+
 ## What is the next step?
 Go to `Application/README.md` for more information about the code
 

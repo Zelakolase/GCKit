@@ -10,6 +10,7 @@ This is the start of the main application.
 
 ## Class Information inside src/
 - App.java : Contains an example of running Harmonia and evaluating it based on Cyclops.
+- MTPSCCC.java : Multi-threaded Power set Clustering Coefficient Computation, a lazy bruteforce method to detect significant clusters
 - classlib/
     - IO.java : Reads and Write information on the hard disk.
     - SparkDB.java : In-memory database. For more information visit the original [Repository](https://github.com/NaDeSys/SparkDB).
