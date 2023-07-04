@@ -5,7 +5,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 import classlib.Graph;
 
@@ -22,9 +24,10 @@ public class Algorithm {
      * @param headCutoff The head nodes cutoff percentage
      * @param nodeColumn1 The first column that contains one of the ends of an edge
      * @param nodeColumn2 The second column that contains the other end of an edge
+     * @param weightColumn The column which holds the edges' weights
      * @return HashMap, key is the head node, and value is the cluster where every element in arraylist is a cluster member
      */
-    public static HashMap<String, ArrayList<String>> computeHM(Graph G, HashMap<String, Double> DeltaStrengths, double unclusteredCutoff, double headCutoff, String nodeColumn1, String nodeColumn2) {
+    public static HashMap<String, ArrayList<String>> computeHM(Graph G, HashMap<String, Double> DeltaStrengths, double unclusteredCutoff, double headCutoff, String nodeColumn1, String nodeColumn2, String weightColumn) {
         HashMap<String, ArrayList<String>> output = new HashMap<>();
         ArrayList<String> remainingNodes = new ArrayList<>();
         remainingNodes.addAll(G.nodeNames);
@@ -41,9 +44,23 @@ public class Algorithm {
         /* CLUSTER IT!!! */
         // Iterate over all head nodes
         for(String headNode : headNodes) {
-            ArrayList<String> Cluster = G.edgeTable.get(new HashMap<>() {{
-                put(nodeColumn1, headNode); // Find all edges where the direction goes from head to another node
-            }}, nodeColumn2); // Find all the 'another nodes'
+            /* Find all rows' indicies where the head node is a transmitter */
+            ArrayList<Integer> indicies = G.edgeTable.getIDs(new HashMap<>() {{
+                put(nodeColumn1, headNode);
+            }});
+            HashMap<Double, Integer> ScoreIndex = new HashMap<>();
+            /* Find all weights for each row */
+            for(int index : indicies) ScoreIndex.put(Double.parseDouble(G.edgeTable.get(index).get(weightColumn)), index);
+            /* Choose top 50% of these rows based on highest weight */
+            List<Map.Entry<Double, Integer>> topEntries = ScoreIndex.entrySet()
+            .stream()
+            .sorted(Collections.reverseOrder(Map.Entry.comparingByKey()))
+            .limit(ScoreIndex.size() / 2)
+            .collect(Collectors.toList());
+            /* Initiate Empty Cluster */
+            ArrayList<String> Cluster = new ArrayList<>();
+            /* Add elements to the cluster */
+            for(Map.Entry<Double, Integer> E : topEntries) Cluster.add(G.edgeTable.get(E.getValue()).get(nodeColumn2));
             Cluster.removeAll(unclusteredNodes); // Remove unclustered nodes
             remainingNodes.removeAll(Cluster); // The rest of the nodes are processed
             output.put(headNode, Cluster);
@@ -63,8 +80,8 @@ public class Algorithm {
     /**
      * @see computeHM(..)
      */
-    public static ArrayList<ArrayList<String>> computeAL(Graph G, HashMap<String, Double> DeltaStrengths, double unclusteredCutoff, double headCutoff, String nodeColumn1, String nodeColumn2) {
-        HashMap<String, ArrayList<String>> computation = computeHM(G, DeltaStrengths, unclusteredCutoff, headCutoff, nodeColumn1, nodeColumn2);
+    public static ArrayList<ArrayList<String>> computeAL(Graph G, HashMap<String, Double> DeltaStrengths, double unclusteredCutoff, double headCutoff, String nodeColumn1, String nodeColumn2, String weightColumn) {
+        HashMap<String, ArrayList<String>> computation = computeHM(G, DeltaStrengths, unclusteredCutoff, headCutoff, nodeColumn1, nodeColumn2, weightColumn);
         ArrayList<ArrayList<String>> output = new ArrayList<>();
         for(Entry<String, ArrayList<String>> E : computation.entrySet()) {
             ArrayList<String> entry = E.getValue();

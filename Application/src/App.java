@@ -17,7 +17,7 @@ public class App {
          * and access 'data'
          * folder, then the file.
          */
-        G.importTSV("../data/GO:0008217.tsv");
+        G.importTSV("../data/GO:0048666.tsv");
         G.computeNodes("node1", "node2");
 
         /* Cluster it */
@@ -25,14 +25,14 @@ public class App {
         // Compute DeltaStrength
         HashMap<String, Double> DeltaStrengths = DeltaStrength.compute(G, "node1", "node2", "combined_score");
         // Run the algorithm
-        ArrayList<ArrayList<String>> Clusters = Algorithm.computeAL(G, DeltaStrengths, 0.15, 0.35, "node1", "node2");
+        ArrayList<ArrayList<String>> Clusters = Algorithm.computeAL(G, DeltaStrengths, 0.1, 0.25, "node1", "node2", "combined_score");
 
         /* Evaluate it */
 
         // Get all clustering coefficients
         for (ArrayList<String> Cluster : Clusters) {
             double clusteringCoefficient = ClusteringCoefficient.compute(G, Cluster, "node1", "node2", "combined_score");
-            System.out.println(Cluster + " , " + clusteringCoefficient);
+            if(clusteringCoefficient >= 0.75) System.out.println(Cluster + " , " + clusteringCoefficient);
         }
         // Get the power set of the whole graph
         // ArrayList<ArrayList<String>> PS = PowerSet.compute(G, 7, 13);
