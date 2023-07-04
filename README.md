@@ -15,8 +15,8 @@ We used Java programming language to build the kit, with [SparkDB](https://githu
 ## Applications in Kit
 | Name      | Function |
 | ----------- | ----------- |
-| Cyclops      | Evaluation of the correctness and performance for any clusterization process       |
-| Harmonia   | Proposed Clusterization algorithm for weighted directed graphs        |
+| Cyclops      | Proposed Clusterization algorithm for weighted directed graphs        |
+| Harmonia   | Evaluation of the correctness and performance for any clusterization process       |
 
 Check the README of each application for more information about these applications. All of the source code exists in 'Application/'
 
