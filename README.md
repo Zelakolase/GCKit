@@ -6,6 +6,8 @@ GCKit is a research project to find optimal clusterization and classification al
 1. Establish proper grading and indicators for the performance and correctness of any classification algorithm
 2. Find an optimal algorithm for classification and clusterization highly-connected graphs.
 
+Besides, GCKit has Power Set calculation method, to get significant clusters via bruteforce over the whole graph.
+
 NOTE: This kit is assumes that every input graph is a weighted graph.
 
 ## General Technical Information
