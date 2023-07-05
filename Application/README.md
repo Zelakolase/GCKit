@@ -21,4 +21,4 @@ This is the start of the main application.
     - Algorithm.java : The main algorithm
 - Harmonia/
     - ClusteringCoefficient.java : Computes the clustering coefficient for a certain graph
-    - PowerSet.java : Generates a power set of all possible clusters for a graph, then compares it to the given clusterization results
+    - PowerSet.java : Generates a power set of all possible clusters for a graph
