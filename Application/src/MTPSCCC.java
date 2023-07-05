@@ -11,15 +11,26 @@ import classlib.Graph;
  * @author Morad A.
  */
 public class MTPSCCC {
-    static Graph G = new Graph(); // Empty Graph Object
+    Graph G = new Graph(); // Empty Graph Object
+
     public static void main(String[] args) throws Exception {
+        MTPSCCC Obj = new MTPSCCC();
+        Graph G = new Graph();
+        G.importTSV("../data/0048666.tsv");
+        G.computeNodes("node1", "node2");
+        Obj.run(G);
+    }
+
+    /**
+     * Run MTPSCCC
+     * @param G The specified Graph Object
+     */
+    public void run(Graph G) {
+        this.G = G;
         /* In order to avoid Context Switching issues, we decided to limit the running thread to num. avail. processors */
         ExecutorService ES = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
-        /* Graph declaration */
-        G.importTSV("../data/GO:0045776.tsv");
-        G.computeNodes("node1", "node2");
         /* For every set size for the power set, initialize a thread to compute it */
-        int lowestSize = 4, highestSize = G.nodeNames.size();
+        int lowestSize = 5, highestSize = G.nodeNames.size();
         System.out.println("Started!");
         for(int currentSize = lowestSize; currentSize <= highestSize; currentSize++) {
             T thread = new T(currentSize);
@@ -29,8 +40,9 @@ public class MTPSCCC {
         SoftShutdown(ES);
     }
 
-    /*
+    /**
      * Shut downs the thread pool after 20 days or when all tasks are finished, which is earlier.
+     * @param threadPool The Thread Pool to shutdown
      */
     public static void SoftShutdown(ExecutorService threadPool) {
         threadPool.shutdown();
@@ -42,7 +54,7 @@ public class MTPSCCC {
         }
     }
 
-    public static class T implements Runnable {
+    public class T implements Runnable {
 
         int size = 0;
         public T(int size) {
