@@ -8,7 +8,7 @@ import classlib.Graph;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        /* Declare a Graph and a Stopwatch */
+        /* Declare a Graph */
         Graph G = new Graph();
         /*
          * As mentioned in the original README.md, you have to execute the application
