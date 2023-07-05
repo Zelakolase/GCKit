@@ -31,7 +31,6 @@ public class MTPSCCC {
         ExecutorService ES = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
         /* For every set size for the power set, initialize a thread to compute it */
         int lowestSize = 5, highestSize = G.nodeNames.size();
-        System.out.println("Started!");
         for(int currentSize = lowestSize; currentSize <= highestSize; currentSize++) {
             T thread = new T(currentSize);
             ES.submit(thread);
