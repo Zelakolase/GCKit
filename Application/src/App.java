@@ -4,6 +4,7 @@ import java.util.HashMap;
 import Cyclops.Algorithm;
 import Cyclops.DeltaStrength;
 import Harmonia.ClusteringCoefficient;
+import Harmonia.PowerSet;
 import classlib.Graph;
 
 public class App {
@@ -30,12 +31,20 @@ public class App {
         /* Evaluate it */
 
         // Get all clustering coefficients
+        System.out.println("STARTING CYCLOPS");
+        System.out.println("Cluster , ClusteringCoefficient");
         for (ArrayList<String> Cluster : Clusters) {
             double clusteringCoefficient = ClusteringCoefficient.compute(G, Cluster, "node1", "node2", "combined_score");
             if(clusteringCoefficient >= 0.75) System.out.println(Cluster + " , " + clusteringCoefficient);
         }
-        // Get the power set of the whole graph
-        // ArrayList<ArrayList<String>> PS = PowerSet.compute(G, 7, 13);
-        /* Under Development (Shovel emoji xD) */
+        // Get the power set of the whole graph, every element in the bigger ArrayList is a cluster
+        ArrayList<ArrayList<String>> PS = PowerSet.compute(G, 5, G.nodeNames.size());
+        System.out.println("\n === === === === === \n");
+        System.out.println("STARTING POWERSET");
+        System.out.println("Cluster , ClusteringCoefficient");
+        for(ArrayList<String> Cluster : PS) {
+            double clusteringCoefficient = ClusteringCoefficient.compute(G, Cluster, "node1", "node2", "combined_score");
+            if(clusteringCoefficient >= 0.75) System.out.println(Cluster + " , " + clusteringCoefficient);
+        }
     }
 }
