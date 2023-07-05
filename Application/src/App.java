@@ -17,7 +17,7 @@ public class App {
          * and access 'data'
          * folder, then the file.
          */
-        G.importTSV("../data/GO:0048666.tsv");
+        G.importTSV("../data/GO:1903522.tsv");
         G.computeNodes("node1", "node2");
 
         /* Cluster it */
@@ -25,7 +25,7 @@ public class App {
         // Compute DeltaStrength
         HashMap<String, Double> DeltaStrengths = DeltaStrength.compute(G, "node1", "node2", "combined_score");
         // Run the algorithm
-        ArrayList<ArrayList<String>> Clusters = Algorithm.computeAL(G, DeltaStrengths, 0.1, 0.25, "node1", "node2", "combined_score");
+        ArrayList<ArrayList<String>> Clusters = Algorithm.computeAL(G, DeltaStrengths, 0.1, 0.35, "node1", "node2", "combined_score");
 
         /* Evaluate it */
 
@@ -41,6 +41,6 @@ public class App {
         System.out.println("STARTING POWERSET");
         System.out.println("Cluster , ClusteringCoefficient");
         MTPSCCC Calculation = new MTPSCCC();
-        Calculation.run(G);
+        //Calculation.run(G); -> Uncomment this line if you have a NASA supercomputer or you do not care about CPU usage
     }
 }

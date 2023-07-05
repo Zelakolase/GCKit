@@ -55,7 +55,7 @@ public class Algorithm {
             List<Map.Entry<Double, Integer>> topEntries = ScoreIndex.entrySet()
             .stream()
             .sorted(Collections.reverseOrder(Map.Entry.comparingByKey()))
-            .limit(ScoreIndex.size() / 2)
+            .limit((int) Math.floor(ScoreIndex.size() * 0.5))
             .collect(Collectors.toList());
             /* Initiate Empty Cluster */
             ArrayList<String> Cluster = new ArrayList<>();

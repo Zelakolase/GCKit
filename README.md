@@ -30,8 +30,9 @@ All of the commands must be executed in 'Application/src/'
 The datasets are available via StringDB export function. According to StringDB: "All data and download files in STRING are freely available under a 'Creative Commons BY 4.0' license. When using the data, please provide appropriate credit — and inform users of any changes or additions that you might have made to the data."
 
 - GO:0008217 : Regulation of Blood Pressure
-- GO:0045776 (new) : Negative regulation of Blood Pressure
+- GO:0045776 : Negative regulation of Blood Pressure
 - GO:0048666 : Neuron Development
+- GO:1903522 : Regulation of Blood Circulation
 
 ## What is the next step?
 Go to `Application/README.md` for more information about the code
