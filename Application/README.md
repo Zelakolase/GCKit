@@ -3,7 +3,6 @@ This is the start of the main application.
 
 ## Folder Information
 - src/ : Contains source code.
-- lib/ : Contains the JAR files for GraphStream.
 - data/ : Contains example Protein-Protein interaction networks from StringDB, the file name is the GeneOntology ID.
 - src/Cyclops/ : Cyclops application source code
 - src/Harmonia/ : Harmonia application source code
