@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map.Entry;
 
 import javax.crypto.Cipher;
@@ -138,12 +139,15 @@ public class SparkDB {
         if (in.size() < 1) throw new IllegalArgumentException("HashMap argument passed in getIDs(..) has no elements");
         Entry<String, String> FirstElement = in.entrySet().iterator().next();
         ArrayList<Integer> out = new ArrayList<>(Mapper.get(FirstElement.getKey()).multipleGet(FirstElement.getValue(), iter));
-        for (Integer temp : out) {
+        Iterator<Integer> iterator = out.iterator();
+        while (iterator.hasNext()) {
+            Integer temp = iterator.next();
             boolean match = false;
             for (Entry<String, String> entry : in.entrySet()) {
                 match = Mapper.get(entry.getKey()).get(temp).equals(entry.getValue());
+                if (!match) break;
             }
-            if (!match) out.remove(temp);
+            if (!match) iterator.remove();
         }
         return out;
     }
