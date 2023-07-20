@@ -36,5 +36,11 @@ public class Statistics {
         // Compute coefficient of variation
         double cv = (stddev / mean) * 100;
         System.out.println("Coefficient of variation: " + cv + "%");
+
+        // Compute skewness
+        double skewness = 0.0;
+        for (double num : data) skewness += Math.pow((num - mean) / stddev, 3);
+        skewness *= (double) data.size() / ((double) data.size() - 1) * ((double) data.size() - 2);
+        System.out.println("Skewness: " + skewness);
     }
 }
