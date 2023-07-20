@@ -18,7 +18,7 @@ public class App {
          * and access 'data'
          * folder, then the file.
          */
-        G.importTSV("../data/GO:0008217.tsv");
+        G.importTSV("../data/GO:0048666.tsv");
         G.computeNodes("node1", "node2");
 
         /* Cluster it */

@@ -36,5 +36,8 @@ public class Statistics {
         // Compute coefficient of variation
         double cv = (stddev / mean) * 100;
         System.out.println("Coefficient of variation: " + cv + "%");
+
+        // Number of elements
+        System.out.println("Number of clusters: " + data.size());
     }
 }
