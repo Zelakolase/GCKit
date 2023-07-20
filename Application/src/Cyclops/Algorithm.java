@@ -27,7 +27,7 @@ public class Algorithm {
      * @param weightColumn The column which holds the edges' weights
      * @return HashMap, key is the head node, and value is the cluster where every element in arraylist is a cluster member
      */
-    public static HashMap<String, ArrayList<String>> computeHM(Graph G, HashMap<String, Double> DeltaStrengths, double unclusteredCutoff, double headCutoff, String nodeColumn1, String nodeColumn2, String weightColumn) {
+    public static HashMap<String, ArrayList<String>> computeHM(Graph G, HashMap<String, Double> DeltaStrengths, double unclusteredCutoff, double headCutoff, String nodeColumn1, String nodeColumn2, String weightColumn) throws InterruptedException {
         HashMap<String, ArrayList<String>> output = new HashMap<>();
         ArrayList<String> remainingNodes = new ArrayList<>();
         remainingNodes.addAll(G.nodeNames);
@@ -65,6 +65,7 @@ public class Algorithm {
             remainingNodes.removeAll(Cluster); // The rest of the nodes are processed
             output.put(headNode, Cluster);
         }
+        
         // Optimize time!!! Iterate over left-over nodes to be heads
         for(String nodeName : remainingNodes) {
             ArrayList<String> Cluster = G.edgeTable.get(new HashMap<>() {{
@@ -80,7 +81,7 @@ public class Algorithm {
     /**
      * @see computeHM(..)
      */
-    public static ArrayList<ArrayList<String>> computeAL(Graph G, HashMap<String, Double> DeltaStrengths, double unclusteredCutoff, double headCutoff, String nodeColumn1, String nodeColumn2, String weightColumn) {
+    public static ArrayList<ArrayList<String>> computeAL(Graph G, HashMap<String, Double> DeltaStrengths, double unclusteredCutoff, double headCutoff, String nodeColumn1, String nodeColumn2, String weightColumn) throws InterruptedException {
         HashMap<String, ArrayList<String>> computation = computeHM(G, DeltaStrengths, unclusteredCutoff, headCutoff, nodeColumn1, nodeColumn2, weightColumn);
         ArrayList<ArrayList<String>> output = new ArrayList<>();
         for(Entry<String, ArrayList<String>> E : computation.entrySet()) {
