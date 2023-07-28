@@ -10,6 +10,16 @@ Besides, GCKit has Power Set calculation method, to get significant clusters via
 
 NOTE: This kit is assumes that every input graph is a weighted graph.
 
+Table of contents:
+- [GCKit](#gckit)
+  - [Description \& Problem Statement](#description--problem-statement)
+  - [General Technical Information](#general-technical-information)
+  - [Applications in Kit](#applications-in-kit)
+  - [Build and run](#build-and-run)
+  - [What is the next step?](#what-is-the-next-step)
+  - [Author Information](#author-information)
+
+
 ## General Technical Information
 We used Java programming language to build the kit, with [SparkDB](https://github.com/NaDeSys/SparkDB). All of the source code files will be included inside 'Application/' The source code tries to follow ISO-25010 standard for code quality, to ensure high readability and maintainability.
 
