@@ -27,7 +27,7 @@ public class Algorithm {
      * @param weightColumn The column which holds the edges' weights
      * @return HashMap, key is the head node, and value is the cluster where every element in arraylist is a cluster member
      */
-    public static HashMap<String, ArrayList<String>> computeHM(Graph G, HashMap<String, Double> DeltaStrengths, double unclusteredCutoff, double headCutoff, String nodeColumn1, String nodeColumn2, String weightColumn) throws InterruptedException {
+    public static HashMap<String, ArrayList<String>> computeHM(Graph G, HashMap<String, Double> DeltaStrengths, double unclusteredCutoff, double headCutoff, String nodeColumn1, String nodeColumn2, String weightColumn, double multiplier) throws InterruptedException {
         HashMap<String, ArrayList<String>> output = new HashMap<>();
         ArrayList<String> remainingNodes = new ArrayList<>();
         remainingNodes.addAll(G.nodeNames);
@@ -49,6 +49,51 @@ public class Algorithm {
                 put(nodeColumn1, headNode);
             }});
             HashMap<Double, Integer> ScoreIndex = new HashMap<>();
+            /* Self Loop Demo  Start*/
+            ArrayList<String> headOutdegree = G.edgeTable.get(new HashMap<>() {{
+                put(nodeColumn1, headNode);
+            }}, nodeColumn2);
+            
+            for(String out : headOutdegree) {
+                ArrayList<String> nodeOutdegree = G.edgeTable.get(new HashMap<>() {{
+                    put(nodeColumn1, out);
+                }}, nodeColumn2);
+
+                ArrayList<String> common = new ArrayList<>(headOutdegree);
+                common.retainAll(nodeOutdegree);
+
+                for(String commonElement : common) {
+                    /* 1. Modify head to common edge +15% */
+                    double weight = Double.parseDouble(G.edgeTable.get(new HashMap<>() {{
+                        put(nodeColumn1, headNode);
+                        put(nodeColumn2, commonElement);
+                    }}, weightColumn).get(0));
+
+                    final double fweight = weight * multiplier > 1.0 ? 1.0 : weight * multiplier;
+
+                    G.edgeTable.modify(new HashMap<>() {{
+                        put(nodeColumn1, headNode);
+                        put(nodeColumn2, commonElement);
+                    }}, new HashMap<>() {{
+                        put(weightColumn, String.valueOf(fweight));
+                    }});
+                    /* 2. Modify out to common edge +15% */
+                    double weight2 = Double.parseDouble(G.edgeTable.get(new HashMap<>() {{
+                        put(nodeColumn1, out);
+                        put(nodeColumn2, commonElement);
+                    }}, weightColumn).get(0));
+
+                    final double fweight2 = weight2 * multiplier > 1.0 ? 1.0 : weight2 * multiplier;
+
+                    G.edgeTable.modify(new HashMap<>() {{
+                        put(nodeColumn1, out);
+                        put(nodeColumn2, commonElement);
+                    }}, new HashMap<>() {{
+                        put(weightColumn, String.valueOf(fweight2));
+                    }});
+                }
+            }
+            /* Self Loop Demo  End */
             /* Find all weights for each row */
             for(int index : indicies) ScoreIndex.put(Double.parseDouble(G.edgeTable.get(index).get(weightColumn)), index);
             /* Choose top 50% of these rows based on highest weight */
@@ -81,8 +126,8 @@ public class Algorithm {
     /**
      * @see computeHM(..)
      */
-    public static ArrayList<ArrayList<String>> computeAL(Graph G, HashMap<String, Double> DeltaStrengths, double unclusteredCutoff, double headCutoff, String nodeColumn1, String nodeColumn2, String weightColumn) throws InterruptedException {
-        HashMap<String, ArrayList<String>> computation = computeHM(G, DeltaStrengths, unclusteredCutoff, headCutoff, nodeColumn1, nodeColumn2, weightColumn);
+    public static ArrayList<ArrayList<String>> computeAL(Graph G, HashMap<String, Double> DeltaStrengths, double unclusteredCutoff, double headCutoff, String nodeColumn1, String nodeColumn2, String weightColumn, double multiplier) throws InterruptedException {
+        HashMap<String, ArrayList<String>> computation = computeHM(G, DeltaStrengths, unclusteredCutoff, headCutoff, nodeColumn1, nodeColumn2, weightColumn, multiplier);
         ArrayList<ArrayList<String>> output = new ArrayList<>();
         for(Entry<String, ArrayList<String>> E : computation.entrySet()) {
             ArrayList<String> entry = E.getValue();
