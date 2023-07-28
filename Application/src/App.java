@@ -5,7 +5,9 @@ import Cyclops.Algorithm;
 import Cyclops.DeltaStrength;
 import Harmonia.ClusteringCoefficient;
 import classlib.Graph;
+import classlib.IO;
 import classlib.Statistics;
+import classlib.stopWatch;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -18,15 +20,23 @@ public class App {
          * and access 'data'
          * folder, then the file.
          */
-        G.importTSV("../data/GO:0048666.tsv");
+        String data = new String(IO.read("../data/SM00220.tsv"));
+        G.importTSVString(data);
         G.computeNodes("node1", "node2");
-
+        Graph GG = G.clone();
         /* Cluster it */
 
         // Compute DeltaStrength
+        stopWatch sW = new stopWatch();
+        sW.start();
         HashMap<String, Double> DeltaStrengths = DeltaStrength.compute(G, "node1", "node2", "combined_score");
+        sW.stop();
+        System.out.println("Delta Strength Took " + (sW.nanoTimeElapsed / 1_000_000.0) + " ms");
         // Run the algorithm
-        ArrayList<ArrayList<String>> Clusters = Algorithm.computeAL(G, DeltaStrengths, 0.1, 0.45, "node1", "node2", "combined_score");
+        sW.start();
+        ArrayList<ArrayList<String>> Clusters = Algorithm.computeAL(G, DeltaStrengths, 0.0, 0.35, "node1", "node2", "combined_score", 1.05);
+        sW.stop();
+        System.out.println("Clustering Took " + (sW.nanoTimeElapsed / 1_000_000.0) + " ms");
 
         /* Evaluate it */
 
@@ -35,12 +45,11 @@ public class App {
         System.out.println("Cluster , ClusteringCoefficient");
         ArrayList<Double> CCs = new ArrayList<>();
         for (ArrayList<String> Cluster : Clusters) {
-            double clusteringCoefficient = ClusteringCoefficient.compute(G, Cluster, "node1", "node2", "combined_score");
+            double clusteringCoefficient = ClusteringCoefficient.compute(GG, Cluster, "node1", "node2", "combined_score");
             if(clusteringCoefficient == clusteringCoefficient) CCs.add(clusteringCoefficient);
             System.out.println(Cluster + " , " + clusteringCoefficient);
         }
-        System.out.println("\n === === === === === \n");
-        System.out.println("Statistics: ");
+        
         Statistics.printStats(CCs);
         // Get the power set of the whole graph, every element in the bigger ArrayList is a cluster
        /* 
