@@ -29,12 +29,10 @@ public class Graph {
 
     /**
      * Imports data from TSV files of StringDB tabular text output export option
-     * @param filename The file path and name of the desired TSV file
+     * @param filename The TSV Content
      * @throws Exception
      */
-    public void importTSV(String filename) throws Exception {
-        /* Reads the file from disk */
-        String data = new String(IO.read(filename));
+    public void importTSVString(String data) throws Exception {
         /* Converts TSV format to proper CSV format */
         data = data.replaceAll("\t", "\",\"") // Tab character to [","] String (what is in the brackets)
         .replaceAll("\n", "\"\n\"") // New line to ["\n"]
@@ -42,5 +40,15 @@ public class Graph {
         data = data.substring(0, data.length() - 2);
         /* Imports proper CSV to edgeTable */
         edgeTable.readFromString(data);
+    }
+
+    /**
+     * Returns a clone of the graph object
+     */
+    public Graph clone() {
+        Graph G = new Graph();
+        G.edgeTable = this.edgeTable;
+        G.nodeNames = this.nodeNames;
+        return G;
     }
 }
