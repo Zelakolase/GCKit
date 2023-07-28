@@ -1,5 +1,4 @@
 *.class
 Application/src/buildNrun.sh
-Application/src/Test.java
-Application/src/Test2.java
+Application/src/Test*.java
 Application/data/string_MCL_clusters.tsv
