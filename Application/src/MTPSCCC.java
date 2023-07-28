@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 import Harmonia.ClusteringCoefficient;
 import classlib.Graph;
+import classlib.IO;
 
 /**
  * Multi Threaded Power Set Clustering Coefficient Computation
@@ -16,7 +17,8 @@ public class MTPSCCC {
     public static void main(String[] args) throws Exception {
         MTPSCCC Obj = new MTPSCCC();
         Graph G = new Graph();
-        G.importTSV("../data/0048666.tsv");
+        String data = new String(IO.read("../data/0048666.tsv"));
+        G.importTSVString(data);
         G.computeNodes("node1", "node2");
         Obj.run(G);
     }
