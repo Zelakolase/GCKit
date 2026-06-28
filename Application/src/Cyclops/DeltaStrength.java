@@ -7,7 +7,7 @@ import classlib.Graph;
 
 /**
  * This class computes DeltaStrength for all nodes, this assumes directed graphs
- * @author Morad A.
+ * @author GILL A.
  */
 public class DeltaStrength {
     /**

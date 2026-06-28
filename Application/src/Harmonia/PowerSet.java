@@ -6,7 +6,7 @@ import classlib.Graph;
 
 /**
  * This class computes the power set of a graph based on some arguments, used in evaluation
- * @author Morad A.
+ * @author GILL A.
  */
 public class PowerSet {
     /**

@@ -7,7 +7,7 @@ import classlib.Graph;
 
 /**
  * This class computes the weighted clustering coefficient for a cluster/graph
- * @author Morad A.
+ * @author GILL A.
  */
 public class ClusteringCoefficient {
     /**
