@@ -5,7 +5,7 @@ import java.util.Collections;
 
 /**
  * Statistics for a bunch of datapoints, prints out results
- * @author GILL A.
+ * @author REDACTED A.
  */
 public class Statistics {
     /**

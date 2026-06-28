@@ -13,7 +13,7 @@ import classlib.Graph;
 
 /**
  * This class is the proposed clusterization algorithm
- * @author GILL A.
+ * @author REDACTED A.
  */
 public class Algorithm {
     /**

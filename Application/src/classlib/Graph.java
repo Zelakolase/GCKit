@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * This class represents a single graph
- * @author GILL A.
+ * @author REDACTED A.
  */
 public class Graph {
     /* List of node names */

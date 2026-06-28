@@ -40,4 +40,4 @@ All of the commands must be executed in 'Application/src/'
 Go to `Application/README.md` for more information about the code
 
 ## Author Information
-GILL A., E-mail: Zelakolase[at]tuta.io, website: [zelakolase.neocities.org](zelakolase.neocities.org)
+REDACTED A., E-mail: Zelakolase[at]tuta.io, website: [zelakolase.neocities.org](zelakolase.neocities.org)

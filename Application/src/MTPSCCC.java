@@ -9,7 +9,7 @@ import classlib.IO;
 
 /**
  * Multi Threaded Power Set Clustering Coefficient Computation
- * @author GILL A.
+ * @author REDACTED A.
  */
 public class MTPSCCC {
     Graph G = new Graph(); // Empty Graph Object
